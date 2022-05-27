@@ -1,0 +1,47 @@
+.photographer_card {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.photographer_card h2 {
+    color: $color-secondary;
+    font-size: 3em;
+    margin: 10px;
+}
+
+.photographer_card img {
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, .2);;
+    object-fit: cover;
+    object-position: center;
+    margin: 40px;
+}
+
+.photographer_card p{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    margin: 20px;
+
+    & span{
+        text-align: center;
+        margin: 10px;
+    }
+
+    & span:nth-of-type(1){
+        color: $color-primary;
+        font-size: 1.5em;
+    }
+    & span:nth-of-type(2){
+        color: $color-tertiary;
+        font-size: 1em;
+    }
+    
+    & span:nth-of-type(3){
+        color: $color-tertiary;
+    }
+}

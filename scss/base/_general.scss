@@ -7,4 +7,28 @@
 body {
     font-family: "DM Sans", sans-serif;
     margin: 0;
+    font-size: 18px;
+}
+
+a{
+    text-decoration: none;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+}
+
+h1 {
+    font-size: 2em;
+    color: $color-primary;
+    margin-right: 100px;
+}
+
+.logo {
+    height: 50px;
+    margin-left: 100px;
 }

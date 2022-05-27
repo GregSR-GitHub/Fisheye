@@ -1,11 +1,205 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+}
+
+h1 {
+  font-size: 2em;
+  color: #901C1C;
+  margin-right: 100px;
+}
+
+.logo {
+  height: 50px;
+  margin-left: 100px;
+}
+
+.photographer_card {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.photographer_card h2 {
+  color: #D3573c;
+  font-size: 3em;
+  margin: 10px;
+}
+
+.photographer_card img {
+  height: 200px;
+  width: 200px;
+  border-radius: 100px;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  margin: 40px;
+}
+
+.photographer_card p {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  margin: 20px;
+}
+.photographer_card p span {
+  text-align: center;
+  margin: 10px;
+}
+.photographer_card p span:nth-of-type(1) {
+  color: #901C1C;
+  font-size: 1.5em;
+}
+.photographer_card p span:nth-of-type(2) {
+  color: #525252;
+  font-size: 1em;
+}
+.photographer_card p span:nth-of-type(3) {
+  color: #525252;
+}
+
 #contact_modal {
   display: none;
 }
 
-.photograph-header {
+main {
+  margin-bottom: 100px;
+}
+
+.photographer_header {
+  display: flex;
+  align-items: center;
   background-color: #FAFAFA;
   height: 300px;
   margin: 0 100px;
+}
+
+.photos_section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 100px;
+}
+
+.photo_card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-color: #FAFAFA;
+  margin: 30px 0;
+  height: 25vw;
+  width: 25vw;
+  color: #901C1C;
+}
+.photo_card img {
+  height: 25vw;
+  width: 25vw;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  border-radius: 10px;
+}
+.photo_card video {
+  height: 25vw;
+  width: 25vw;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  border-radius: 10px;
+}
+.photo_card p {
+  display: flex;
+  margin: 10px 0;
+  font-size: 1.2em;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.price {
+  position: fixed;
+  background-color: #DB8876;
+  font-size: 1.4em;
+  font-weight: bold;
+  padding: 20px;
+  bottom: 0;
+  right: 40px;
+  border-radius: 10px 10px 0 0;
 }
 
 .contact_button {

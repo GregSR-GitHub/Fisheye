@@ -1,13 +1,83 @@
 //Photographer page styles//
 
+// Variables, Mixins & Keyframes //
+@import "./abstracts/variables";
+
+// Bases //
+@import "./base/reset";
+@import "./base/general";
+
+// Components //
+@import "./components/photograph-header";
+
 #contact_modal {
     display: none;
 }
 
-.photograph-header {
+main{
+    margin-bottom: 100px;
+}
+
+.photographer_header {
+    display: flex;
+    align-items: center;
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+}
+.photos_section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 100px;
+}
+
+.photo_card{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: #FAFAFA;
+    margin: 30px 0;
+    height: 25vw;
+    width: 25vw;
+    color: #901C1C;
+
+    & img{
+        height: 25vw;
+        width: 25vw;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 10px;
+    }
+
+    & video{
+        height: 25vw;
+        width: 25vw;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 10px;
+    }
+
+    & p{
+        display: flex;
+        margin: 10px 0;
+        font-size: 1.2em;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+
+}
+
+.price{
+    position: fixed;
+    background-color: #DB8876;
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 20px;
+    bottom: 0;
+    right: 40px;
+    border-radius: 10px 10px 0 0;
 }
 
 .contact_button {

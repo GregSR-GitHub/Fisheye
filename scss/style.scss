@@ -7,66 +7,21 @@
 @import "./base/reset";
 @import "./base/general";
 
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 90px;
-}
+// Components //
+@import "./components/photographer_card";
+
 
 h1 {
+    font-size: 2em;
     color: $color-primary;
     margin-right: 100px;
-}
-
-.logo {
-    height: 50px;
-    margin-left: 100px;
 }
 
 .photographer_section {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
-.photographer_card {
-    justify-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
 
-.photographer_card h2 {
-    color: $color-secondary;
-    font-size: 36px;
-}
-
-.photographer_card img {
-    height: 200px;
-    width: 200px;
-}
-
-.photographer_card p{
-    display: flex;
-    flex-flow: column nowrap;
-
-    & span{
-        text-align: center;
-    }
-    
-    & span:nth-child(1){
-        color: $color-primary;
-    }
-    
-    & span:nth-child(2){
-        color: $color-black;
-    }
-    
-    & span:nth-child(3){
-        color: $color-tertiary;
-    }
-}
