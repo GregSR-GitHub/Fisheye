@@ -5,37 +5,59 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Fisheye - photographe </title>
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="index.html">
+        <img src="assets/images/logo.png" class="logo" />
+      </a>
     </header>
     <main id="main">
       <div class="photographer_header">
         <button class="contact_button" id="contact_photographer" onclick="displayModal()">Contactez-moi</button>
       </div>
+      <div class="photo_sort">
+        <label for="sort-by">Trier par: </label>
+    <select name="sort-by" class="sort-by" id="sort-by">
+        <option value="popularity">Popularité</option>
+        <option value="date">Date</option>
+        <option value="title">Titre</option>
+    </select>
+      </div>
       <div class="photos_section">
+      </div>
+      <div class="price_section">
+        <span class="total-like"></span>
       </div>
     </main>
     <div id="contact_modal">
+      <div class="modal_bground"></div>
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
+        <h3 class="contact_name"></h3>
 				<form>
 					<div>
 						<label>Prénom</label>
-						<input />
+						<input type="text"/>
+            <label >Nom</label>
+						<input  type="text"/>
+            <label>Email</label>
+						<input  type="email"/>
+            <label>Votre message</label>
+						<textarea></textarea>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
     <script src="/scripts/utils/contactForm.js"></script>
-    <script src="scripts/factories/photographer.js"></script>
-    <script src="scripts/factories/photos.js"></script>
-    <script src="scripts/pages/photographer.js"></script>
+    <script src="/scripts/factories/photographer.js"></script>
+    <script src="/scripts/factories/photos.js"></script>
+    <script src="/scripts/pages/photographer.js"></script>
   </body>
 </html>

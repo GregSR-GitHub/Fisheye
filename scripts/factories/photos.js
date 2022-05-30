@@ -17,8 +17,11 @@ function photoFactory(data) {
             const extension = videoUrl.split(".")[1];
             console.log(extension);
             const video = document.createElement( 'video' );
-            video.setAttribute("src", videoUrl);
-            video.setAttribute("type", "video/" + extension);
+            const source= document.createElement( 'source' );
+            video.appendChild(source);
+            video.setAttribute("controls", true);
+            source.setAttribute("src", videoUrl);
+            source.setAttribute("type", "video/" + extension);
             article.appendChild(video);
          }
 
@@ -27,7 +30,7 @@ function photoFactory(data) {
         const p = document.createElement( 'p' );
         article.appendChild(p);
         const spanLike = document.createElement( 'span' );
-        spanLike.textContent = likes;
+        spanLike.innerHTML = likes + " <i class=\"fa-solid fa-heart\"></i>";
         p.appendChild(h2);
         p.appendChild(spanLike);
         

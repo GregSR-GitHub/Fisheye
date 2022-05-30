@@ -66,11 +66,22 @@ async function displayPhotoData(photos) {
     });
 };
 
+async function displayPhotoLike(photos) {
+    const totalLikeSection = document.querySelector(".total-like");
+    let photoTotalLike = 0;
+    photos.forEach((photo) => {
+        photoTotalLike += photo.likes
+    });
+    totalLikeSection.innerHTML = photoTotalLike + " <i class=\"fa-solid fa-heart\"></i>";
+    console.log(photoTotalLike);
+};
+
 async function init() {
     // Récupère les datas des photographes
     const photographer = await getPhotographer();
     const photos = await getPhotos();
     displayPhotoData(photos);
+    displayPhotoLike(photos);
     displayData(photographer);
 };
 

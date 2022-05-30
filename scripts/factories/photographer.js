@@ -42,6 +42,10 @@ function photographHeaderFactory(data) {
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const buttun = document.getElementById( 'contact_photographer' );
+        const infos = document.querySelector( '.price_section' );
+        const contactName = document.querySelector( '.contact_name' );
+        contactName.textContent = name; // Affiche le nom du photographe dans le formulaire de contact
+        console.log(infos);
         article.className = 'photographer_card';
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
@@ -56,13 +60,13 @@ function photographHeaderFactory(data) {
         spanCity.textContent = city;
         const spanTag = document.createElement( 'span' );
         spanTag.textContent = tagline;
-        const divPrice = document.createElement( 'div' );
-        divPrice.textContent = price + "€/jour";
-        divPrice.className = 'price';
+        const spanPrice = document.createElement( 'div' );
+        spanPrice.textContent = price + "€/jour";
+        spanPrice.className = 'price';
         p.appendChild(h2);
         p.appendChild(spanCity);
         p.appendChild(spanTag);
-        article.appendChild(divPrice);
+        infos.appendChild(spanPrice);
         
         return (article);
     }

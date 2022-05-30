@@ -10,8 +10,11 @@
 // Components //
 @import "./components/photograph-header";
 
-#contact_modal {
-    display: none;
+// Layouts //
+@import "./layouts/modal";
+
+body{
+    position: relative;
 }
 
 main{
@@ -25,6 +28,24 @@ main{
     height: 300px;
     margin: 0 100px;
 }
+
+.photo_sort {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    margin: 10px 100px;
+}
+
+.sort-by {
+    background-color: #901C1C;
+    color: white;
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 10px;
+    margin: 0 5px;
+    font-size: 1.2rem;
+}
+
 .photos_section{
     display: flex;
     flex-wrap: wrap;
@@ -69,8 +90,14 @@ main{
 
 }
 
-.price{
+
+.price_section{
+
     position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    flex-wrap: nowrap;
     background-color: #DB8876;
     font-size: 1.4em;
     font-weight: bold;
@@ -78,6 +105,10 @@ main{
     bottom: 0;
     right: 40px;
     border-radius: 10px 10px 0 0;
+}
+
+.price{
+    font-weight: bold;
 }
 
 .contact_button {
@@ -91,58 +122,4 @@ main{
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.modal {
-    border-radius: 5px;
-    background-color: #DB8876;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 35px;
-    margin: auto;
-}
-
-.modal header {
-    justify-content: space-between;
-    width: 100%;
-}
-
-.modal header img {
-    cursor: pointer;
-}
-
-.modal header h2 {
-    font-size: 64px;
-    font-weight: normal;
-    text-align: center;
-}
-
-form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-form label {
-    color: #312E2E;
-    font-size: 36px;
-}
-
-form div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: self-start;
-    margin-bottom: 26px;
-}
-
-form input {
-    width: 100%;
-    height: 68px;
-    border: none;
-    border-radius: 5px;
 }
