@@ -1,18 +1,23 @@
 function photoFactory(data) {
-    const { title, photographerId, likes, image, video} = data;
+    const { id, title, photographerId, likes, image, video} = data;
 
     const picture = `assets/photos/${photographerId}/${image}`;
     const videoUrl = `assets/photos/${photographerId}/${video}`;
+    const link = `#`;
 
     function getPhotoCardDOM() {
         const article = document.createElement( 'article' );
         article.className = 'photo_card';
+        const a = document.createElement( 'a' );
+        a.setAttribute("href", link);
+        a.setAttribute("onclick", "displayLightbox(" + id + ")");
+        article.appendChild(a);
         // Vérifier si le fichier est une image ou un vidéo.
         if(image){
             const img = document.createElement( 'img' );
             img.setAttribute("src", picture);
             img.setAttribute("alt", title);
-            article.appendChild(img);
+            a.appendChild(img);
          }else if(video){
             const extension = videoUrl.split(".")[1];
             console.log(extension);
@@ -22,7 +27,7 @@ function photoFactory(data) {
             video.setAttribute("controls", true);
             source.setAttribute("src", videoUrl);
             source.setAttribute("type", "video/" + extension);
-            article.appendChild(video);
+            a.appendChild(video);
          }
 
         const h2 = document.createElement( 'h2' );
