@@ -8,6 +8,7 @@ function photoFactory(data) {
     function getPhotoCardDOM() {
         const article = document.createElement( 'article' );
         article.className = 'photo_card';
+        article.setAttribute("id", "photo" + id);
         const a = document.createElement( 'a' );
         a.setAttribute("href", link);
         a.setAttribute("onclick", "displayLightbox(" + id + ")");
@@ -24,7 +25,6 @@ function photoFactory(data) {
             const video = document.createElement( 'video' );
             const source= document.createElement( 'source' );
             video.appendChild(source);
-            video.setAttribute("controls", true);
             source.setAttribute("src", videoUrl);
             source.setAttribute("type", "video/" + extension);
             a.appendChild(video);

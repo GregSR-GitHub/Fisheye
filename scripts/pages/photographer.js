@@ -1,6 +1,7 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
 let params = (new URL(document.location)).searchParams;
+let photoArray = [];
 let idPhotographer = params.get('id');
 console.log(idPhotographer);
 
@@ -39,6 +40,7 @@ async function getPhotos() {
     .then(function(value) {
         let photosData = value.media;
         let photoData = photosData.filter(p => p.photographerId == idPhotographer);
+        photoArray = photoData;
         return  photoData;
     })
     .catch(function(error) {

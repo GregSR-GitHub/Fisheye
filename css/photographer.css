@@ -185,6 +185,11 @@ h1 {
 }
 
 .lightbox_img {
+  display: none;
+  width: 700px;
+}
+
+.lightbox_vid {
   width: 700px;
 }
 
