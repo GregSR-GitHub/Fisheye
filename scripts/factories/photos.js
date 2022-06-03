@@ -9,25 +9,13 @@ function photoFactory(data) {
         const article = document.createElement( 'article' );
         article.className = 'photo_card';
         article.setAttribute("id", "photo" + id);
-        const a = document.createElement( 'a' );
-        a.setAttribute("href", link);
+        const a = makeLink('#', article);
         a.setAttribute("onclick", "displayLightbox(" + id + ")");
-        article.appendChild(a);
         // Vérifier si le fichier est une image ou un vidéo.
         if(image){
-            const img = document.createElement( 'img' );
-            img.setAttribute("src", picture);
-            img.setAttribute("alt", title);
-            a.appendChild(img);
+            makeImage(picture,title,a);
          }else if(video){
-            const extension = videoUrl.split(".")[1];
-            console.log(extension);
-            const video = document.createElement( 'video' );
-            const source= document.createElement( 'source' );
-            video.appendChild(source);
-            source.setAttribute("src", videoUrl);
-            source.setAttribute("type", "video/" + extension);
-            a.appendChild(video);
+            makeVideo(videoUrl,a);
          }
 
         const h2 = document.createElement( 'h2' );

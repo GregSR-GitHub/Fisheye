@@ -58,10 +58,14 @@
     <div id="lightbox">
       <div class="lightbox_bground"></div>
 			<div class="lightbox_section">
-        <img class="lightbox_close" src="assets/icons/close.svg" onclick="closeLightbox()" />
+        <div class="lightbox_close close"  onclick="closeLightbox()" ></div>
+        <div class="arrow arrow-left"></div>
+        <div class="arrow arrow-right"></div>
         <img class="lightbox_img" src="" alt="">
+        <span class="lightbox_name"></span>
       </div>
     </div>
+    <script src="/scripts/factories/elements.js"></script>
     <script src="/scripts/factories/photographer.js"></script>
     <script src="/scripts/factories/photos.js"></script>
     <script src="/scripts/pages/photographer.js"></script>

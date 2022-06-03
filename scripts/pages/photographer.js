@@ -6,7 +6,7 @@ let idPhotographer = params.get('id');
 console.log(idPhotographer);
 
 async function getPhotographer() {
-    // Penser à remplacer par les données récupérées dans le json
+    // Récupére les données des photographes dans le json
 
     const photographersDataAll = fetch('../data/photographers.json')
     .then(function(result) {
@@ -15,8 +15,7 @@ async function getPhotographer() {
         }
     })
     .then(function(value) {
-        let photographersData = value.photographers;
-        let photographerData = photographersData.find(p => p.id == idPhotographer);
+        let photographerData = value.photographers.find(p => p.id == idPhotographer);
         console.log(photographerData);
         return  photographerData;
     })
@@ -24,12 +23,12 @@ async function getPhotographer() {
         console.log("Erreur");
     });
 
-    // et bien retourner le tableau photographers seulement une fois
+    // et bien retourner le tableau photographers
     return photographersDataAll;
 }
 
 async function getPhotos() {
-    // Penser à remplacer par les données récupérées dans le json
+    // Récupére les données des photos dans le json
 
     const photographersDataAll = fetch('../data/photographers.json')
     .then(function(result) {
@@ -38,8 +37,7 @@ async function getPhotos() {
         }
     })
     .then(function(value) {
-        let photosData = value.media;
-        let photoData = photosData.filter(p => p.photographerId == idPhotographer);
+        let photoData = value.media.filter(p => p.photographerId == idPhotographer);
         photoArray = photoData;
         return  photoData;
     })
@@ -47,7 +45,7 @@ async function getPhotos() {
         console.log("Erreur");
     });
 
-    // et bien retourner le tableau photographers seulement une fois
+    // et bien retourner le tableau photographers
     return photographersDataAll;
 }
 
@@ -66,6 +64,7 @@ async function displayPhotoData(photos) {
         const photoCardDOM = photoModel.getPhotoCardDOM();
         photographersSection.appendChild(photoCardDOM);
     });
+    await sortBy();
 };
 
 async function displayPhotoLike(photos) {
@@ -82,6 +81,7 @@ async function init() {
     // Récupère les datas des photographes
     const photographer = await getPhotographer();
     const photos = await getPhotos();
+    
     displayPhotoData(photos);
     displayPhotoLike(photos);
     displayData(photographer);

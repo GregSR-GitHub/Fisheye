@@ -48,8 +48,9 @@ main{
 }
 
 .photos_section{
-    display: flex;
-    flex-wrap: wrap;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 25vw);
     justify-content: space-between;
     margin: 0 100px;
 }
