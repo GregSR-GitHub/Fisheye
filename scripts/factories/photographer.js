@@ -1,47 +1,44 @@
-function photographerFactory(data) {
-    const { name, id, city, tagline, price, portrait } = data;
+class PhotographerFactory {
+    constructor(data) {
+        this.name = data.name
+        this.city = data.city
+        this.tagline = data.tagline
+        this.price = data.price
+        this.name = data.name
+        this.picture = `assets/photographers/${data.portrait}`;
+        this.link = `photographer.html?id=${data.id}`;
+    }
 
-    const picture = `assets/photographers/${portrait}`;
-    const link = `photographer.html?id=${id}`;
-
-    function getUserCardDOM() {
+    getCard() {
         const article = document.createElement( 'article' );
         article.className = 'photographer_card';
-        const a = makeLink(link, article);
-        makeImage(picture,name,a);
-        makeElement('h2',name,article);
-        const p = makeElement('p','',article);
-        makeElement('span',city,p);
-        makeElement('span',tagline,p);
-        makeElement('span',price + "€/jour", p);
+        const a = new Link(this.link, article).makeLink();
+        new Image(this.picture,this.name,a).makeImage();
+        new TextElement('h2',this.name,article).makeElement();
+        const p = new TextElement('p','',article).makeElement();
+        new TextElement('span',this.city,p).makeElement();
+        new TextElement('span',this.tagline,p).makeElement();
+        new TextElement('span',this.price + "€/jour", p).makeElement();
 
-        return (article);
+        return article
     }
-    return { name, picture, getUserCardDOM }
-}
 
-function photographHeaderFactory(data) {
-    const { name, city, tagline, price, portrait } = data;
-
-    const picture = `assets/photographers/${portrait}`;
-
-    function getUserCardDOM() {
+    getHeader() {
         const article = document.createElement( 'article' );
         const button = document.getElementById( 'contact_photographer' );
         const infos = document.querySelector( '.price_section' );
         const contactName = document.querySelector( '.contact_name' );
-        contactName.textContent = name; // Affiche le nom du photographe dans le formulaire de contact
+        contactName.textContent = this.name; // Affiche le nom du photographe dans le formulaire de contact
         article.className = 'photographer_card';
-        const p = makeElement('p','',article);
+        const p = new TextElement('p','',article).makeElement();
         article.appendChild(button);
-        makeImage(picture,name,article);
-        makeElement('h2',name,p);
-        makeElement('span',city,p);
-        makeElement('span',tagline,p);
-        const spanPrice = makeElement('span',price + "€/jour", infos);
-        spanPrice.className = 'price';        
-        
-        return (article);
+        new Image(this.picture,this.name,article).makeImage();
+        new TextElement('h2',this.name,p).makeElement();
+        new TextElement('span',this.city,p).makeElement();
+        new TextElement('span',this.tagline,p).makeElement();
+        const spanPrice = new TextElement('span',this.price + "€/jour", infos).makeElement();
+        spanPrice.className = 'price';  
+
+        return article
     }
-    return { name, picture, getUserCardDOM }
 }

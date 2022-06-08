@@ -26,16 +26,10 @@ function displayLightbox(idPhoto) {
             vidL.remove();
         }
     }else if(photoLightboxData.video){
-        const extension = videoUrl.split(".")[1];
         imgL.style.display = "none";
-        const video = document.createElement( 'video' );
+        const video = new Video(videoUrl,lightboxSection).makeVideo();
         video.className = 'lightbox_vid';
-        const source= document.createElement( 'source' );
-        video.appendChild(source);
         video.setAttribute("controls", true);
-        source.setAttribute("src", videoUrl);
-        source.setAttribute("type", "video/" + extension);
-        lightboxSection.appendChild(video);
         name.innerHtml = photoLightboxData.title;
     }
 

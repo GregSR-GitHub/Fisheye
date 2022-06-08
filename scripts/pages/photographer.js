@@ -4,86 +4,50 @@ let params = (new URL(document.location)).searchParams;
 let photoArray = [];
 let idPhotographer = params.get('id');
 console.log(idPhotographer);
+const urlData = '../data/photographers.json';
 
 async function getPhotographer() {
-    // Récupére les données des photographes dans le json
-
-    const photographersDataAll = fetch('../data/photographers.json')
-    .then(function(result) {
-        if (result.ok) {
-        return result.json();
-        }
-    })
-    .then(function(value) {
-        let photographerData = value.photographers.find(p => p.id == idPhotographer);
-        console.log(photographerData);
-        return  photographerData;
-    })
-    .catch(function(error) {
-        console.log("Erreur");
-    });
-
-    // et bien retourner le tableau photographers
-    return photographersDataAll;
+    // Récupére les données du photographe parmis les données du Json
+    const dataPhotographers = await new Data(urlData).getPhotographers();
+    let photographerData = dataPhotographers.find(p => p.id == idPhotographer);
+    console.log(photographerData);
+    return  photographerData;
 }
 
 async function getPhotos() {
-    // Récupére les données des photos dans le json
-
-    const photographersDataAll = fetch('../data/photographers.json')
-    .then(function(result) {
-        if (result.ok) {
-        return result.json();
-        }
-    })
-    .then(function(value) {
-        let photoData = value.media.filter(p => p.photographerId == idPhotographer);
-        photoArray = photoData;
-        return  photoData;
-    })
-    .catch(function(error) {
-        console.log("Erreur");
-    });
-
-    // et bien retourner le tableau photographers
-    return photographersDataAll;
+    // Récupére les données les photos du photographe dans le json
+    const dataPhotos = await new Data(urlData).getPhotos();
+    let photoData = dataPhotos.filter(p => p.photographerId == idPhotographer);
+    photoArray = photoData;
+    return  photoData;
 }
 
 async function displayData(photographer) {
     const photographersSection = document.querySelector(".photographer_header");
-    const photographerModel = photographHeaderFactory(photographer);
-    const userCardDOM = photographerModel.getUserCardDOM();
+    const photographerModel = new PhotographerFactory(photographer);
+    const userCardDOM = photographerModel.getHeader();
     photographersSection.appendChild(userCardDOM);
 };
 
-async function displayPhotoData(photos) {
+async function displayPhotoData(photos,counter) {
     const photographersSection = document.querySelector(".photos_section");
     photos.forEach((photo) => {
-        console.log(photo);
-        const photoModel = photoFactory(photo);
-        const photoCardDOM = photoModel.getPhotoCardDOM();
+        const photoData = new Photo(photo);
+        console.log(photoData);
+        const photoModel = new PhotoFactory(photoData,counter);
+        const photoCardDOM = photoModel.getCard();
         photographersSection.appendChild(photoCardDOM);
     });
     await sortBy();
-};
-
-async function displayPhotoLike(photos) {
-    const totalLikeSection = document.querySelector(".total-like");
-    let photoTotalLike = 0;
-    photos.forEach((photo) => {
-        photoTotalLike += photo.likes
-    });
-    totalLikeSection.innerHTML = photoTotalLike + " <i class=\"fa-solid fa-heart\"></i>";
-    console.log(photoTotalLike);
 };
 
 async function init() {
     // Récupère les datas des photographes
     const photographer = await getPhotographer();
     const photos = await getPhotos();
-    
-    displayPhotoData(photos);
-    displayPhotoLike(photos);
+    let photosLikesCounter = new likesCounter(photos);
+    photosLikesCounter.displayLikes();
+    displayPhotoData(photos,photosLikesCounter);
     displayData(photographer);
 };
 

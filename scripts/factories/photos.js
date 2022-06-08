@@ -1,33 +1,51 @@
-function photoFactory(data) {
-    const { id, title, photographerId, likes, image, video} = data;
+class PhotoFactory{
+    constructor(data,counter)  {
+        this.id = data.id
+        this.title = data.title
+        this.photographerId = data.photographerId
+        this.likes = data.likes
+        this.type = data.type
+        this.url = data.url
+        this.article = document.createElement( 'article' );
+        this.article.className = 'photo_card';
+        this.article.setAttribute("id", "photo" + this.id);
+        this.counter = counter;
+        }
 
-    const picture = `assets/photos/${photographerId}/${image}`;
-    const videoUrl = `assets/photos/${photographerId}/${video}`;
-    const link = `#`;
-
-    function getPhotoCardDOM() {
-        const article = document.createElement( 'article' );
-        article.className = 'photo_card';
-        article.setAttribute("id", "photo" + id);
-        const a = makeLink('#', article);
-        a.setAttribute("onclick", "displayLightbox(" + id + ")");
-        // Vérifier si le fichier est une image ou un vidéo.
-        if(image){
-            makeImage(picture,title,a);
-         }else if(video){
-            makeVideo(videoUrl,a);
-         }
-
-        const h2 = document.createElement( 'h2' );
-        h2.textContent = title;
-        const p = document.createElement( 'p' );
-        article.appendChild(p);
-        const spanLike = document.createElement( 'span' );
-        spanLike.innerHTML = likes + " <i class=\"fa-solid fa-heart\"></i>";
-        p.appendChild(h2);
-        p.appendChild(spanLike);
+        handleLikes(){
+            const that = this;
+            this.article.querySelector(".photo_likes").addEventListener("click", function(){
+            if(this.classList.contains("liked")){
+               this.classList.remove("liked");
+               this.innerHTML = that.likes + " <i class=\"fa-solid fa-heart\"></i>";
+               that.counter.updateLikes('dislike');
+            }else{
+               this.classList.add("liked");
+               const newLikes = that.likes + 1;
+               this.innerHTML = newLikes + " <i class=\"fa-solid fa-heart\"></i>";
+               that.counter.updateLikes('like');
+            }
+            })
         
-        return (article);
-    }
-    return { title, picture, getPhotoCardDOM }
+        }    
+
+    getCard() {
+
+        const a = new Link('#', this.article).makeLink();
+        a.setAttribute("onclick", "displayLightbox(" + this.id + ")");
+        // Vérifier si le fichier est une image ou un vidéo.
+        if(this.type == 'image'){
+            new Image(this.url,this.title,a).makeImage();
+         }else if(this.type == 'video'){
+            new Video(this.url,a).makeVideo();
+         }
+        const p = new TextElement('p','',this.article).makeElement();
+        new TextElement('h2',this.title,p).makeElement();
+        const spanLike = new TextElement('span','', p).makeElement();
+        spanLike.innerHTML = this.likes + " <i class=\"fa-solid fa-heart\"></i>";
+        spanLike.className = 'photo_likes';
+        this.handleLikes();
+        return this.article;
+    }   
+
 }

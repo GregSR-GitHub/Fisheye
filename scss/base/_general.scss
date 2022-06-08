@@ -12,6 +12,10 @@ body {
 
 a{
     text-decoration: none;
+    color: #901C1C;
+    &:visited{
+        color: #901C1C;
+    }
 }
 
 header {

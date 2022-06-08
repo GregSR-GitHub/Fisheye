@@ -8,6 +8,7 @@
 @import "./base/general";
 
 // Components //
+@import "./components/sort-by";
 @import "./components/photograph-header";
 
 // Layouts //
@@ -35,16 +36,6 @@ main{
     align-items: center;
     font-size: 1.2rem;
     margin: 10px 100px;
-}
-
-.sort-by {
-    background-color: #901C1C;
-    color: white;
-    padding: 10px 20px;
-    border: 0;
-    border-radius: 10px;
-    margin: 0 5px;
-    font-size: 1.2rem;
 }
 
 .photos_section{
@@ -89,8 +80,16 @@ main{
         justify-content: space-between;
     }
 
+    & .liked{
+        color: white;
+        background-color: #901C1C;
+        border-radius: 5px;
+        padding: 0 3px;
+    }
 
 }
+
+
 
 
 .price_section{
