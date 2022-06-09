@@ -11,12 +11,12 @@
   <body>
     <header>
       <a href="index.html">
-        <img src="assets/images/logo.png" class="logo" />
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
       </a>
     </header>
-    <main id="main">
+    <main id="main" aria-hidden="false">
       <div class="photographer_header">
-        <button class="contact_button" id="contact_photographer" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" id="contact_photographer" onclick="displayModal()" aria-label="Contact Me">Contactez-moi</button>
       </div>
       <div class="photo_sort">
         <label for="sort-by">Trier par: </label>
@@ -32,39 +32,48 @@
         <span class="total-like"></span>
       </div>
     </main>
-    <div id="contact_modal">
+    <!-- Form Modal -->
+    <div id="contact_modal" aria-hidden="true" role="dialog"  aria-labelledby="modal_title">
       <div class="modal_bground"></div>
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi <br><span class="contact_name"></span></h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <h2 id="modal_title">Contactez-moi <br><span class="contact_name"></span></h2>
+          <button class="close_modal" onclick="closeModal()" aria-label="Close contact form"><img src="assets/icons/close.svg" /></button>
         </header>
         
-				<form>
+				<form  class="modal_form">
 					<div>
 						<label for="first-name">Prénom</label>
-						<input type="text" id="first-name" required minlength="2"/>
+						<input type="text" id="first-name" name="first-name" class="text-control" required minlength="2"/>
+            <span class="invalid-form-text">Veuillez indiquer votre prénom.</span>
             <label  for="last-name">Nom</label>
-						<input  type="text"  id="last-name" required minlength="2"/>
+						<input  type="text"  id="last-name" name="last-name" class="text-control" required minlength="2"/>
+            <span class="invalid-form-text">Veuillez indiquer votre nom.</span>
             <label for="email">Email</label>
-						<input  type="email" id="email" required/>
+						<input  type="email" id="email"  name="email" class="text-control" required/>
+            <span class="invalid-form-text">Veuillez indiquer une adresse e-mail valide.</span>
             <label  for="your-message">Votre message</label>
-						<textarea  id="your-message" minlength="2"  required></textarea>
+						<textarea  id="your-message"  name="your-message" class="text-control" minlength="3"  required></textarea>
+            <span class="invalid-form-text">Message trop court.</span>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button" aria-label="Send" onclick="validate()">Envoyer</button>
 				</form>
+        <div class="valid-message">Merci pour votre message.</div>
 			</div>
 		</div>
-    <div id="lightbox">
-      <div class="lightbox_bground"></div>
+    <!-- End Form Modal -->
+    <!-- Lightbox Modal -->
+    <div id="lightbox"  aria-hidden="true" aria-label="Image closup view">
+      <div class="modal_bground"></div>
 			<div class="lightbox_section">
-        <div class="lightbox_close close"  onclick="closeLightbox()" ></div>
-        <div class="arrow arrow-left"></div>
-        <div class="arrow arrow-right"></div>
+        <button class="lightbox_close close"  onclick="closeLightbox()"  aria-label="Close dialog"></button>
+        <a href="#" class="arrow arrow-left"  aria-label="Previous image"></a>
+        <a href="#" class="arrow arrow-right"  aria-label="Next image"></a>
         <img class="lightbox_img" src="" alt="">
         <span class="lightbox_name"></span>
       </div>
     </div>
+    <!-- End Lightbox -->
     <script src="/scripts/utils/api.js"></script>
     <script src="/scripts/models/photo.js"></script>
     <script src="/scripts/factories/elements.js"></script>

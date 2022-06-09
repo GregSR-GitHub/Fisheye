@@ -6,6 +6,7 @@
     width: 100%;
     height: 100%;
     justify-content: center;
+    overflow: auto;
 }
 
 .modal {
@@ -40,8 +41,13 @@
     height: 140px;
 }
 
-.modal header img {
+.close_modal {
     cursor: pointer;
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
 }
 
 .modal header h2 {
@@ -78,10 +84,7 @@ form input {
     border: none;
     border-radius: 5px;
     font-size: 1.5rem;
-
-    &:not(:focus):invalid{
-        border: 3px #901C1C solid;
-    }
+    margin-bottom: 10px ;
 }
 
 
@@ -91,7 +94,28 @@ form textarea {
     border: none;
     border-radius: 5px;
     font-size: 1.5rem;
-    &:invalid{
-        border: 3px #901C1C solid;
-    }
+    margin-bottom: 10px ;
+
+}
+
+
+form .invalid-form-text{
+    display: none;
+}
+
+.invalid-input{
+    border: 3px #901C1C solid;
+
+    & + .invalid-form-text{
+        display: inline;
+        size: 1rem;
+        line-height: 0rem;
+        color:#901C1C;
+    } 
+}
+
+.valid-message{
+    display: none;
+    font-size: 2rem;
+    margin: 20px;
 }

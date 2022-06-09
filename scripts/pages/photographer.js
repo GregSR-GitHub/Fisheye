@@ -46,7 +46,7 @@ async function init() {
     const photographer = await getPhotographer();
     const photos = await getPhotos();
     let photosLikesCounter = new likesCounter(photos);
-    photosLikesCounter.displayLikes();
+    photosLikesCounter.displayTotalLikes();
     displayPhotoData(photos,photosLikesCounter);
     displayData(photographer);
 };

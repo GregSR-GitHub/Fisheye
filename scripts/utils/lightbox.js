@@ -35,6 +35,19 @@ function displayLightbox(idPhoto) {
 
     setLightboxArrow(photoLightboxData);
 
+
+	modal.style.display = "flex";
+    modal.setAttribute('aria-hidden', 'false');
+    main.setAttribute('aria-hidden', 'true');
+    document.body.classList.add("no-scroll");
+    // Close modal when escape key is pressed
+    document.addEventListener('keydown', e => {
+    const keyCode = e.keyCode ? e.keyCode : e.which
+    if (modal.getAttribute('aria-hidden') == 'false' && keyCode === 27) {
+        closeLightbox();
+    }
+ })
+
 }
 
 function setLightboxArrow(photoData){
@@ -68,7 +81,13 @@ function closeLightbox() {
     const modal = document.getElementById("lightbox");
     modal.style.display = "none";
     const vidL = document.querySelector( '.lightbox_vid' );
+    //const pictureClass = document.getElementById( 'photo' + idPhoto );
     if(vidL){
         vidL.remove();
     }
+    modal.style.display = "none";
+    modal.setAttribute('aria-hidden', 'true');
+    main.setAttribute('aria-hidden', 'false');
+    document.body.classList.remove("no-scroll");
+    //pictureClass.focus();
 }

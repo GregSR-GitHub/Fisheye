@@ -13,8 +13,9 @@ class PhotographerFactory {
         const article = document.createElement( 'article' );
         article.className = 'photographer_card';
         const a = new Link(this.link, article).makeLink();
-        new Image(this.picture,this.name,a).makeImage();
-        new TextElement('h2',this.name,article).makeElement();
+        a.setAttribute("aria-label", this.name)
+        new Image(this.picture,'',a).makeImage();
+        new TextElement('h2',this.name,a).makeElement();
         const p = new TextElement('p','',article).makeElement();
         new TextElement('span',this.city,p).makeElement();
         new TextElement('span',this.tagline,p).makeElement();

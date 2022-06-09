@@ -8,25 +8,27 @@ class likesCounter{
     }
 
     displayLikes(){ 
-    this.photos.forEach((photo) => {
-        this.photosLike += photo.likes
-    });
     this.photoTotalLike = this.userLike +  this.photosLike;
-    this.totalLikeSection.innerHTML = this.photoTotalLike + " <i class=\"fa-solid fa-heart\"></i>";
-    console.log("Total likes:" + this.photoTotalLike);
+    this.totalLikeSection.innerHTML = this.photoTotalLike + " <i class=\"fa-solid fa-heart\"  aria-label=\"likes\"></i>";
+        }
+
+    displayTotalLikes(){ 
+        this.photos.forEach((photo) => {
+            this.photosLike += photo.likes
+        });
+        this.displayLikes();
+        console.log("Total likes:" + this.photoTotalLike);
         }
 
     updateLikes(action){ 
         if(action == 'like'){
             this.userLike ++;
-            this.photoTotalLike = this.userLike +  this.photosLike;
-            this.totalLikeSection.innerHTML = this.photoTotalLike + " <i class=\"fa-solid fa-heart\"></i>";
+            this.displayLikes();
             console.log("Update total likes (like):" + this.photoTotalLike);
         }else if(action == 'dislike'){
             this.userLike --;
-            this.photoTotalLike = this.userLike +  this.photosLike;
-            this.totalLikeSection.innerHTML = this.photoTotalLike + " <i class=\"fa-solid fa-heart\"></i>";
+            this.displayLikes();
             console.log("Update total likes (dislike):" + this.photoTotalLike);
         }
-        }
     }
+}
