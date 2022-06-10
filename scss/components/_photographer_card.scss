@@ -1,31 +1,27 @@
-.photographer_card {
+.photographer_card, .photographer_card a{
     justify-self: center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-.photographer_card a{
-    justify-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
+
 .photographer_card h2 {
-    color: $color-secondary;
-    font-size: 2em;
+    color: var(--color-secondary);
+    font-size: $font-size-big;
     margin: 4px;
 }
 
 .photographer_card img {
-    height: 200px;
-    width: 200px;
-    border-radius: 100px;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, .2);;
-    object-fit: cover;
-    object-position: center;
+    @include object-fit(200px, 100px);
+    box-shadow: 0 5px 8px rgba(0, 0, 0, .2);
     margin: 30px;
+    transition: transform 300ms ease;
+
+}
+
+.photographer_card a:hover img, .photographer_card a:focus img {
+    transform: translateY(-10px);
 }
 
 .photographer_card p{
@@ -34,13 +30,13 @@
 
     & span{
         text-align: center;
-        font-size: 0.6em;
+        font-size: $font-size-small;
         margin: 3px;
     }
 
     & span:nth-child(1){
-        color: $color-primary;
-        font-size: 0.9em;
+        color: var(--color-primary);
+        font-size: $font-size-normal;
         margin: 4px;
     }
     
@@ -49,6 +45,6 @@
     }
     
     & span:nth-child(3){
-        color: $color-tertiary;
+        color: var(--color-quaternary);
     }
 }

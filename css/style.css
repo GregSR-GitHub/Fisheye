@@ -56,6 +56,16 @@ table {
   box-sizing: border-box;
 }
 
+:root {
+  --color-primary: #901C1C;
+  --color-secondary: #D3573c;
+  --color-tertiary: #DB8876;
+  --color-quaternary: #525252;
+  --color-quinternary: #fafafa;
+  --color-white: #fff;
+  --color-black: #000;
+}
+
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
@@ -64,10 +74,10 @@ body {
 
 a {
   text-decoration: none;
-  color: #901C1C;
+  color: var(--color-primary);
 }
 a:visited {
-  color: #901C1C;
+  color: var(--color-primary);
 }
 
 header {
@@ -78,26 +88,12 @@ header {
   height: 90px;
 }
 
-h1 {
-  font-size: 2em;
-  color: #901C1C;
-  margin-right: 100px;
-}
-
 .logo {
   height: 50px;
   margin-left: 100px;
 }
 
-.photographer_card {
-  justify-self: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.photographer_card a {
+.photographer_card, .photographer_card a {
   justify-self: center;
   display: flex;
   justify-content: center;
@@ -106,21 +102,26 @@ h1 {
 }
 
 .photographer_card h2 {
-  color: #D3573c;
-  font-size: 2em;
+  color: var(--color-secondary);
+  font-size: 2rem;
   margin: 4px;
 }
 
 .photographer_card img {
-  height: 200px;
   width: 200px;
-  border-radius: 100px;
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+  height: 200px;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
+  border-radius: 100px;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
   margin: 30px;
+  transition: transform 300ms ease;
+}
+
+.photographer_card a:hover img, .photographer_card a:focus img {
+  transform: translateY(-10px);
 }
 
 .photographer_card p {
@@ -129,24 +130,24 @@ h1 {
 }
 .photographer_card p span {
   text-align: center;
-  font-size: 0.6em;
+  font-size: 0.7rem;
   margin: 3px;
 }
 .photographer_card p span:nth-child(1) {
-  color: #901C1C;
-  font-size: 0.9em;
+  color: var(--color-primary);
+  font-size: 1rem;
   margin: 4px;
 }
 .photographer_card p span:nth-child(2) {
   color: #000;
 }
 .photographer_card p span:nth-child(3) {
-  color: #525252;
+  color: var(--color-quaternary);
 }
 
 h1 {
-  font-size: 2em;
-  color: #901C1C;
+  font-size: 2rem;
+  color: var(--color-primary);
   margin-right: 100px;
 }
 

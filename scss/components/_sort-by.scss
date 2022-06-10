@@ -1,10 +1,17 @@
+.photo_sort {
+    display: flex;
+    align-items: center;
+    font-size: $font-size-medium;
+    margin: 10px 100px;
+}
+
 .sort-by {
     position: relative;
-    background-color: #901C1C;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-white);
     padding: 10px 20px;
     border: 0;
     border-radius: 10px;
     margin: 0 5px;
-    font-size: 1.2rem;
+    font-size: $font-size-medium;
 }

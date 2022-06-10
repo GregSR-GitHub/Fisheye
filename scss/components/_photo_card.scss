@@ -1,0 +1,43 @@
+
+.photo_card{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background-color: var(--color-quinternary);
+    margin: 30px 0;
+    height: 25vw;
+    width: 25vw;
+    color: var(--color-primary);
+    border-radius: 10px;
+
+    & img, video{
+        @include object-fit(25vw, 10px);
+    }
+
+    & p{
+        display: flex;
+        margin: 5px 0 10px;
+        font-size: $font-size-mediumbig;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    & .photo_likes{
+        cursor: pointer;
+    }
+
+    & .liked{
+        color: var(--color-white);
+        background-color: var(--color-primary);
+        border-radius: 5px;
+        padding: 0 3px;
+    }
+
+}
+
+.photo_card a{
+    transition: transform 300ms ease;
+}
+.photo_card a:hover, .photo_card a:focus {
+    transform: translateY(-5px);
+}

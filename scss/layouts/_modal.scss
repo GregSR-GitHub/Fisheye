@@ -13,7 +13,7 @@
     position: absolute;
     top: 50px;
     border-radius: 5px;
-    background-color: #DB8876;
+    background-color: var(--color-tertiary);
     width: 750px;
     display: flex;
     flex-direction: column;
@@ -21,6 +21,7 @@
     justify-content: space-between;
     padding: 35px;
     z-index: 2;
+    box-shadow: 0px 10px 20px 10px rgba(0, 0, 0, .2);
 }
 
 .modal_bground{
@@ -30,7 +31,7 @@
     top: 0;
     height: 100%;
     width: 100%;
-    background-color: white;
+    background-color: var(--color-white);
   }
 
 .modal header {
@@ -51,7 +52,7 @@
 }
 
 .modal header h2 {
-    font-size: 64px;
+    font-size: 4rem;
     font-weight: normal;
     text-align: left;
     margin-bottom: 20px;
@@ -66,7 +67,7 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: $font-size-big;
     margin: 10px 0 5px;
 }
 
@@ -78,24 +79,21 @@ form div {
     margin-bottom: 26px;
 }
 
-form input {
+.text-control{
     width: 100%;
-    height: 68px;
     border: none;
     border-radius: 5px;
-    font-size: 1.5rem;
+    font-size: $font-size-mediumbig;
     margin-bottom: 10px ;
+}
+
+form input {
+    height: 68px;
 }
 
 
 form textarea {
-    width: 100%;
     height: 180px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.5rem;
-    margin-bottom: 10px ;
-
 }
 
 
@@ -104,18 +102,18 @@ form .invalid-form-text{
 }
 
 .invalid-input{
-    border: 3px #901C1C solid;
+    border: 3px var(--color-primary) solid;
 
     & + .invalid-form-text{
         display: inline;
-        size: 1rem;
+        font-size: $font-size-normal;
         line-height: 0rem;
-        color:#901C1C;
+        color:var(--color-primary);
     } 
 }
 
 .valid-message{
     display: none;
-    font-size: 2rem;
+    font-size: $font-size-big;
     margin: 20px;
 }

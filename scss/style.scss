@@ -2,6 +2,7 @@
 
 // Variables, Mixins & Keyframes //
 @import "./abstracts/variables";
+@import "./abstracts/mixins";
 
 // Bases //
 @import "./base/reset";
@@ -10,18 +11,8 @@
 // Components //
 @import "./components/photographer_card";
 
+// Pages //
+@import "./pages/home";
 
-h1 {
-    font-size: 2em;
-    color: $color-primary;
-    margin-right: 100px;
-}
-
-.photographer_section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
-    margin-top: 50px;
-}
 
 

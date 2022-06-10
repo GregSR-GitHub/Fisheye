@@ -1,0 +1,47 @@
+body{
+    position: relative;
+}
+
+main{
+    margin-bottom: 100px;
+}
+
+.no-scroll{
+    overflow: hidden;
+}
+
+.photographer_header {
+    display: flex;
+    align-items: center;
+    background-color: #FAFAFA;
+    height: 300px;
+    margin: 0 100px;
+}
+
+.photos_section{
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 25vw);
+    justify-content: space-between;
+    margin: 0 100px;
+}
+
+.price_section{
+
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    flex-wrap: nowrap;
+    background-color: var(--color-tertiary);
+    font-size: $font-size-mediumbig;
+    font-weight: bold;
+    padding: 20px;
+    bottom: 0;
+    right: 40px;
+    border-radius: 10px 10px 0 0;
+}
+
+.price{
+    font-weight: bold;
+}
