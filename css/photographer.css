@@ -100,6 +100,11 @@ header {
   margin: 10px 100px;
 }
 
+.sort-section {
+  position: relative;
+  margin: 0 5px;
+}
+
 .sort-by {
   position: relative;
   background-color: var(--color-primary);
@@ -107,8 +112,37 @@ header {
   padding: 10px 20px;
   border: 0;
   border-radius: 10px;
-  margin: 0 5px;
   font-size: 1.2rem;
+  width: 160px;
+}
+.sort-by span {
+  display: inline;
+  padding: 10px 20px;
+  width: 100%;
+}
+.sort-by + ul {
+  display: none;
+  position: absolute;
+  background-color: var(--color-primary);
+  padding: 0 20px;
+  width: 160px;
+  top: 35px;
+  left: 0;
+  border: 0;
+  border-radius: 10px;
+}
+.sort-by + ul li:nth-child(2) {
+  border-top: 1px white solid;
+  border-bottom: 1px white solid;
+}
+.sort-by_list {
+  display: inline-block;
+  color: var(--color-white);
+  padding: 10px 20px;
+  width: 100%;
+}
+.sort-by_list:visited {
+  color: var(--color-white);
 }
 
 .photographer_card {
@@ -212,14 +246,6 @@ header {
   padding: 0 3px;
 }
 
-.photo_card a {
-  transition: transform 300ms ease;
-}
-
-.photo_card a:hover, .photo_card a:focus {
-  transform: translateY(-5px);
-}
-
 #lightbox {
   display: none;
   position: absolute;
@@ -267,12 +293,6 @@ header {
 }
 
 .lightbox_img {
-  display: none;
-  max-width: 80vw;
-  max-height: 80vh;
-}
-
-.lightbox_vid {
   max-width: 80vw;
   max-height: 80vh;
 }

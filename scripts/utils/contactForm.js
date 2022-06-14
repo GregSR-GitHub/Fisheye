@@ -1,27 +1,69 @@
-
-const modal = document.getElementById("contact_modal");
-const main = document.getElementById("main");
-const buttonOpen = document.getElementById( 'contact_photographer' );
-const buttonClose = document.querySelector( '.close_modal' );
-const textControl = document.querySelectorAll(".text-control");
-const form = document.querySelector( '.modal_form' );
-const validMessage = document.querySelector( '.valid-message' );
-
-textControl.forEach((btn) => btn.addEventListener("change", check));
-// Close modal when escape key is pressed
-document.addEventListener('keydown', e => {
-    const keyCode = e.keyCode ? e.keyCode : e.which
-    if (modal.getAttribute('aria-hidden') == 'false' && keyCode === 27) {
-        closeModal();
-        
-    }
- })
-
-function check(e){
-    checkText(e.target);
+class Form {
+  constructor(){
+    this.modal = document.getElementById("contact_modal");
+    this.main = document.getElementById("main");
+    this.buttonOpen = document.getElementById( 'contact_photographer' );
+    this.buttonClose = document.querySelector( '.close_modal' );
+    this.buttonSend = document.querySelector( '.submit_button' );
+    this.textControl = document.querySelectorAll(".text-control");
+    this.form = document.querySelector( '.modal_form' );
+    this.validMessage = document.querySelector( '.valid-message' );
+    this.inputFirst = document.getElementById("first-name");
+    this.inputLast = document.getElementById("last-name");
+    this.inputEmail = document.getElementById("email");
+    this.inputMessage = document.getElementById("your-message");
   }
 
-  function checkText(testedInput){
+  displayModal() {
+    
+      this.modal.style.display = "flex";
+      this.modal.setAttribute('aria-hidden', 'false');
+      this.main.setAttribute('aria-hidden', 'true');
+      document.body.classList.add("no-scroll");
+      this.buttonClose.focus();
+  }
+  
+  closeModal() {
+      this.modal.style.display = "none";
+      this.modal.setAttribute('aria-hidden', 'true');
+      this.main.setAttribute('aria-hidden', 'false');
+      document.body.classList.remove("no-scroll");
+      this.buttonOpen.focus();
+  }
+
+  setListeners(){
+    const that = this;
+    // Listen Open modal button
+    this.buttonOpen.addEventListener("click", function(){
+      console.log("Open modal");
+      contactForm.displayModal();
+    });
+    // Listen Close modal button
+    this.buttonClose.addEventListener("click", function(){
+      console.log("Close modal");
+      contactForm.closeModal();
+    });
+    // Listen submit form button
+    this.buttonSend.addEventListener("click", function(){
+      console.log("Validation");
+      contactForm.validate();
+    });
+    // Check form input
+    this.textControl.forEach((btn) => btn.addEventListener("change",function (){
+      console.log(btn);
+      that.checkText(btn);
+      
+    }));
+    // Close modal when escape key is pressed
+    document.addEventListener('keydown', e => {
+        const keyCode = e.keyCode ? e.keyCode : e.which
+        if (this.modal.getAttribute('aria-hidden') == 'false' && keyCode === 27) {
+          contactForm.closeModal();
+        }
+    })
+  }
+
+  checkText(testedInput){
     let resultChek = testedInput.reportValidity();
     console.log("Test:" + resultChek);
     if(testedInput.value==''){ 
@@ -35,44 +77,27 @@ function check(e){
     return resultChek;
   }
 
-function displayModal() {
-    
-	modal.style.display = "flex";
-    modal.setAttribute('aria-hidden', 'false');
-    main.setAttribute('aria-hidden', 'true');
-    document.body.classList.add("no-scroll");
-    console.log(buttonClose);
-    buttonClose.focus();
-}
-
-function closeModal() {
-    modal.style.display = "none";
-    modal.setAttribute('aria-hidden', 'true');
-    main.setAttribute('aria-hidden', 'false');
-    document.body.classList.remove("no-scroll");
-    buttonOpen.focus();
-}
-
-function validate() {
+  validate() {
     console.log("Testing all inputs:");
     event.preventDefault();
   
     // verify if all texts inputs are valid
     let invalidInput = 0;
-    textControl.forEach(e => {
-      if(!checkText(e)){
+    this.textControl.forEach(e => {
+      if(!this.checkText(e)){
         invalidInput ++;
       }
     });
-  
-    console.log(invalidInput + " invalid(s) input(s)");
-  
     //change modal if the form is valid
     if(invalidInput==0){
-      form.style.display = "none";
-      validMessage.style.display = "flex"; 
-      console.log("Everyting is valid !");
+      this.form.style.display = "none";
+      this.validMessage.style.display = "flex"; 
+      console.log("First name: " + this.inputFirst.value + ", Laste name: "  + this.inputLast.value + ", Email: " + this.inputEmail.value + ", Message: " + this.inputMessage.value + ".");
     }else{
-      console.log("Everyting isn't valid !");
+      console.log(invalidInput + " invalid(s) input(s)");
     }
   }
+}
+
+const contactForm = new Form();
+contactForm.setListeners();

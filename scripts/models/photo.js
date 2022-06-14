@@ -7,6 +7,7 @@ class Photo{
         this._price = data.price
         this._image = data.image
         this._video = data.video
+        this._date = data.date
         }
 
     get id(){
@@ -20,6 +21,9 @@ class Photo{
     }   
     get likes(){
         return this._likes
+    }
+    get date(){
+        return this._date
     }
     get price(){
         return this._price

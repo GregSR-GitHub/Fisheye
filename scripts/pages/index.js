@@ -1,21 +1,19 @@
-    const urlData = '../data/photographers.json';
-    let photographersData = [];
+class IndexPage{
+    constructor(){
+    this.urlData = '../data/photographers.json';
+    this.section = document.querySelector(".photographer_section");
+    }
 
-    async function displayData(photographers) {
-        const photographersSection = document.querySelector(".photographer_section");
+    async init() {
+    // Récupère les datas des photographes
+    const photographers = await new Data(this.urlData).getPhotographers();
+    photographers.forEach((photographer) => {
+        const photographerCardDOM = new PhotographerFactory(photographer).getCard();
+        this.section.appendChild(photographerCardDOM);
+    });
+    console.log(photographers);
+    }
+}
 
-        photographers.forEach((photographer) => {
-            const photographerCardDOM = new PhotographerFactory(photographer).getCard();
-            photographersSection.appendChild(photographerCardDOM);
-        });
-    };
-
-    async function init() {
-        // Récupère les datas des photographes
-        const photographers = await new Data(urlData).getPhotographers();
-        console.log(photographers);
-        displayData(photographers);
-    };
-    
-    init();
-    
+const page = new IndexPage;
+page.init();

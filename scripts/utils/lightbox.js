@@ -1,93 +1,108 @@
-let imgBefore = '';
-let imgAfter = '';
+let lastImage = '';
+let click = 0;
 
 function displayLightbox(idPhoto) {
+
     const modal = document.getElementById('lightbox');
     const lightboxSection = document.querySelector( '.lightbox_section' );
     const imgL = document.querySelector( '.lightbox_img' );
     const vidL = document.querySelector( '.lightbox_vid' );
     const name = document.querySelector( '.lightbox_name' );
-    let photoLightboxData = photoArray.find(p => p.id == idPhoto);
+    const close = document.querySelector( '.lightbox_close' );
+    let photoLightboxData = allPhotos.find(p => p.id == idPhoto);
 	modal.style.display = "flex";
     console.log(idPhoto);
     console.log(photoLightboxData);
-
-    const pictureLightbox = `assets/photos/${photoLightboxData.photographerId}/${photoLightboxData.image}`;
-    const videoUrl = `assets/photos/${photoLightboxData.photographerId}/${photoLightboxData.video}`;
-    console.log(pictureLightbox);
+    const mediaUrl = photoLightboxData.url;
     name.innerHTML = photoLightboxData.title;
+    lastImage = idPhoto;
+    
 
-    if(photoLightboxData.image){
-        console.log(imgL);
-        imgL.src = pictureLightbox;
-        imgL.alt = photoLightboxData.title;
-        imgL.style.display = "block";
-        if(vidL){ // if a video was load, remove it
-            vidL.remove();
+    if(imgL){ // if a video or image is alredy load, remove it
+            imgL.remove();
+        }else{
+            close.focus();
         }
-    }else if(photoLightboxData.video){
-        imgL.style.display = "none";
-        const video = new Video(videoUrl,lightboxSection).makeVideo();
-        video.className = 'lightbox_vid';
-        video.setAttribute("controls", true);
-        name.innerHtml = photoLightboxData.title;
+    if(photoLightboxData.type == 'image'){
+        const media = new Image(mediaUrl,photoLightboxData.title,lightboxSection).makeImage();
+        media.className = 'lightbox_img';
+
+    }else if(photoLightboxData.type == 'video'){
+        const media = new Video(mediaUrl,lightboxSection).makeVideo();
+        media.className = 'lightbox_img';
+        media.setAttribute("controls", true);
     }
 
     setLightboxArrow(photoLightboxData);
-
-
+    
 	modal.style.display = "flex";
     modal.setAttribute('aria-hidden', 'false');
     main.setAttribute('aria-hidden', 'true');
     document.body.classList.add("no-scroll");
-    // Close modal when escape key is pressed
-    document.addEventListener('keydown', e => {
-    const keyCode = e.keyCode ? e.keyCode : e.which
-    if (modal.getAttribute('aria-hidden') == 'false' && keyCode === 27) {
-        closeLightbox();
-    }
- })
+    // Close modal when close button is pressed
+    close.addEventListener('click', closeLightbox);
 
 }
 
 function setLightboxArrow(photoData){
-
+        const modal = document.getElementById('lightbox');
         const arrowLeft = document.querySelector( '.arrow-left' );
         const arrowRight = document.querySelector( '.arrow-right' );
-        const imgPosition = photoArray.indexOf(photoData);
-        const imgPositionMax = photoArray.length;
+        const imgPosition = allPhotos.indexOf(photoData);
+        const imgPositionMax = allPhotos.length;
         console.log("Position:"+ imgPosition + "/" + imgPositionMax);
         const indexImgLeft = imgPosition - 1;
         const indexImgRight = imgPosition + 1;
         // Left arrow
         if(indexImgLeft >= 0){
-            console.log("Left:"+ photoArray[indexImgLeft].id);
-            arrowLeft.setAttribute("onclick", "displayLightbox(" + photoArray[indexImgLeft].id + ")");
+            console.log("Left:"+ allPhotos[indexImgLeft].id);
+            arrowLeft.setAttribute("onclick", "displayLightbox(" + allPhotos[indexImgLeft].id + ")");
             arrowLeft.style.display = "block";
         }else{
             arrowLeft.style.display = "none";
         }
         // Right arrow
         if(indexImgRight < imgPositionMax){
-            console.log("Right:"+ photoArray[indexImgRight].id);
-            arrowRight.setAttribute("onclick", "displayLightbox(" + photoArray[indexImgRight].id + ")");
+            console.log("Right:"+ allPhotos[indexImgRight].id);
+            arrowRight.setAttribute("onclick", "displayLightbox(" + allPhotos[indexImgRight].id + ")");
             arrowRight.style.display = "block";
+        // Right image when escape right key is pressed
         }else{
             arrowRight.style.display = "none";
         }
+
+        // Left image when escape left key is pressed
+        document.addEventListener('keyup', e => {
+            if (click > 0){
+               return
+            }else if (modal.getAttribute('aria-hidden') == 'false' && e.key === 'ArrowLeft' && (indexImgLeft >= 0)) {
+               // displayLightbox(allPhotos[indexImgLeft].id);
+                arrowLeft.focus();
+                click++;
+            }else if (modal.getAttribute('aria-hidden') == 'false' && e.key === 'ArrowRight' && (indexImgRight < imgPositionMax)) {
+               // displayLightbox(allPhotos[indexImgRight].id);
+                arrowRight.focus();
+                click++;
+            }else if (modal.getAttribute('aria-hidden') == 'false' && e.key === 'Escape') {
+                closeLightbox();
+                click++;
+            }
+            setTimeout(function() { click = 0;  }, 100);
+        });
+
 }
 
 function closeLightbox() {
     const modal = document.getElementById("lightbox");
     modal.style.display = "none";
-    const vidL = document.querySelector( '.lightbox_vid' );
-    //const pictureClass = document.getElementById( 'photo' + idPhoto );
-    if(vidL){
-        vidL.remove();
+    const imgL = document.querySelector( '.lightbox_img' );
+    const pictureFocus = document.getElementById( 'photo' + lastImage );
+    if(imgL){
+        imgL.remove();
     }
     modal.style.display = "none";
     modal.setAttribute('aria-hidden', 'true');
     main.setAttribute('aria-hidden', 'false');
     document.body.classList.remove("no-scroll");
-    //pictureClass.focus();
+    pictureFocus.children[0].focus();
 }

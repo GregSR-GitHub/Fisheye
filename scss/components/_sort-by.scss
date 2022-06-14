@@ -5,6 +5,11 @@
     margin: 10px 100px;
 }
 
+.sort-section{
+    position: relative;
+    margin: 0 5px;
+}
+
 .sort-by {
     position: relative;
     background-color: var(--color-primary);
@@ -12,6 +17,41 @@
     padding: 10px 20px;
     border: 0;
     border-radius: 10px;
-    margin: 0 5px;
+    
     font-size: $font-size-medium;
+    width: 160px;
+
+    & span{
+        display: inline;
+        padding: 10px 20px;
+        width:100%;
+    }
+
+    & + ul{
+        display:none;
+        position: absolute;
+        background-color: var(--color-primary);
+        padding: 0 20px;
+        width: 160px;
+        top:35px;
+        left:0;
+        border: 0;
+        border-radius: 10px;
+
+       & li:nth-child(2){
+            border-top: 1px white solid;
+            border-bottom: 1px white solid;
+        }
+    }
+    &_list{
+        display: inline-block;
+        color: var(--color-white);
+        padding: 10px 20px;
+        width: 100%;
+
+        &:visited{
+            color: var(--color-white);
+        }
+    }
 }
+

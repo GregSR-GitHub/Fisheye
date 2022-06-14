@@ -34,10 +34,3 @@
     }
 
 }
-
-.photo_card a{
-    transition: transform 300ms ease;
-}
-.photo_card a:hover, .photo_card a:focus {
-    transform: translateY(-5px);
-}

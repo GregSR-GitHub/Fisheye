@@ -1,12 +1,12 @@
 const sortInput = document.getElementById("sort-by");
-
-
-sortInput.addEventListener("change", sortBy);
+const sortInput2 = document.querySelectorAll(".sort-by_list");
+sortInput.addEventListener("click", openSortBy);
+sortInput2.forEach((btn) => btn.addEventListener("click", sortByButton));
+const list = sortInput2[0].parentElement.parentElement;
 
 async function sortBy(){
     console.log(sortInput.value);
-    console.log(photoArray);
-
+    console.log(allPhotos);
     const sortByMapped = (map,compareFn) => (a,b) => compareFn(map(a),map(b));
     const byString = (a, b) => a.localeCompare( b, { sensitivity: 'base' });
     const byValue = (a,b) => a - b;
@@ -19,30 +19,47 @@ async function sortBy(){
     const byDate = sortByMapped(toDate,byValue);
 
     if(sortInput.value=="popularity"){
-        photoArray.sort(byLikes);
+        allPhotos.sort(byLikes);
         changeOrder();
 
     }else if(sortInput.value=="date"){
-        photoArray.sort(byDate);
+        allPhotos.sort(byDate);
         changeOrder();
+
     }else if(sortInput.value=="title"){
-        photoArray.sort(byName);
+        allPhotos.sort(byName);
         changeOrder();
     }else{
         console.log("Error");
     }
 }
 
+async function openSortBy(e){
+    let ariaExp = sortInput.getAttribute("aria-expanded");
+    if(ariaExp == 'true'){   
+        list.style.display = "none";
+        sortInput.setAttribute("aria-expanded", "false");
+        console.log(ariaExp);
+      }else{
+    list.style.display = "inline-block";
+    sortInput.setAttribute("aria-expanded", "true");
+    console.log(list);
+   }
+}
+
+async function sortByButton(e){
+    console.log(e.target.dataset.list);
+    sortInput.value = e.target.dataset.list;
+    sortInput.children[0].innerHTML = e.target.innerHTML;
+    sortBy();
+}
+
 
 function changeOrder(){
     const parent = document.querySelector(".photos_section");
-    //let numOrder = 1;
-    photoArray.forEach((photoSorted) => {
+    allPhotos.forEach((photoSorted) => {
         let photo = document.getElementById("photo"+photoSorted.id);
         parent.appendChild(photo);
-        //console.log(numOrder + ":" + photoSorted.id )
-        //photo.style.order = numOrder;
-        //numOrder ++
     });
 
 }

@@ -16,15 +16,25 @@
     </header>
     <main id="main" aria-hidden="false">
       <div class="photographer_header">
-        <button class="contact_button" id="contact_photographer" onclick="displayModal()" aria-label="Contact Me">Contactez-moi</button>
+        <button class="contact_button" id="contact_photographer" aria-label="Contact Me">Contactez-moi</button>
       </div>
       <div class="photo_sort">
         <label for="sort-by">Trier par: </label>
-    <select name="sort-by" class="sort-by" id="sort-by">
+ <!--   <select name="sort-by" class="sort-by" id="sort-by">
         <option value="popularity">Popularité</option>
         <option value="date">Date</option>
         <option value="title">Titre</option>
-    </select>
+    </select> -->
+    <div class="sort-section">
+      <button name="sort-by" class="sort-by" id="sort-by" value="popularity" role="button" aria-haspopup="listbox" aria-expanded="false">
+        <span>Popularité</span>
+      </button>
+      <ul role="listbox" aria-activedescendant="" aria-selected="false" aria-labelledby="sort-by">
+        <li><a href="#" data-list="popularity" class="sort-by_list">Popularité</a></li>
+        <li><a href="#" data-list="date"  class="sort-by_list">Date</a></li>
+        <li></li><a href="#" data-list="title" class="sort-by_list">Titre</a></li>
+      </ul>
+    </div>
       </div>
       <div class="photos_section">
       </div>
@@ -38,7 +48,7 @@
 			<div class="modal">
 				<header>
           <h2 id="modal_title">Contactez-moi <br><span class="contact_name"></span></h2>
-          <button class="close_modal" onclick="closeModal()" aria-label="Close contact form"><img src="assets/icons/close.svg" /></button>
+          <button class="close_modal" aria-label="Close contact form"><img src="assets/icons/close.svg" /></button>
         </header>
         
 				<form  class="modal_form">
@@ -56,7 +66,7 @@
 						<textarea  id="your-message"  name="your-message" class="text-control" minlength="3"  required></textarea>
             <span class="invalid-form-text">Message trop court.</span>
 					</div>
-          <button class="contact_button" aria-label="Send" onclick="validate()">Envoyer</button>
+          <button class="contact_button submit_button" aria-label="Send">Envoyer</button>
 				</form>
         <div class="valid-message">Merci pour votre message.</div>
 			</div>
@@ -66,10 +76,9 @@
     <div id="lightbox"  aria-hidden="true" aria-label="Image closup view">
       <div class="modal_bground"></div>
 			<div class="lightbox_section">
-        <button class="lightbox_close close"  onclick="closeLightbox()"  aria-label="Close dialog"></button>
+        <button class="lightbox_close close" aria-label="Close dialog"></button>
         <a href="#" class="arrow arrow-left"  aria-label="Previous image"></a>
         <a href="#" class="arrow arrow-right"  aria-label="Next image"></a>
-        <img class="lightbox_img" src="" alt="">
         <span class="lightbox_name"></span>
       </div>
     </div>
