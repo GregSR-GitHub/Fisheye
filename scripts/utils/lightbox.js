@@ -6,7 +6,6 @@ function displayLightbox(idPhoto) {
     const modal = document.getElementById('lightbox');
     const lightboxSection = document.querySelector( '.lightbox_section' );
     const imgL = document.querySelector( '.lightbox_img' );
-    const vidL = document.querySelector( '.lightbox_vid' );
     const name = document.querySelector( '.lightbox_name' );
     const close = document.querySelector( '.lightbox_close' );
     let photoLightboxData = allPhotos.find(p => p.id == idPhoto);
@@ -72,16 +71,21 @@ function setLightboxArrow(photoData){
         }
 
         // Left image when escape left key is pressed
-        document.addEventListener('keyup', e => {
+        window.addEventListener('keyup', e => {
+            if (e.defaultPrevented) {
+                return;
+              }
             if (click > 0){
                return
             }else if (modal.getAttribute('aria-hidden') == 'false' && e.key === 'ArrowLeft' && (indexImgLeft >= 0)) {
-               // displayLightbox(allPhotos[indexImgLeft].id);
+                //displayLightbox(allPhotos[indexImgLeft].id);
                 arrowLeft.focus();
+                arrowLeft.click();
                 click++;
             }else if (modal.getAttribute('aria-hidden') == 'false' && e.key === 'ArrowRight' && (indexImgRight < imgPositionMax)) {
-               // displayLightbox(allPhotos[indexImgRight].id);
+                //displayLightbox(allPhotos[indexImgRight].id);
                 arrowRight.focus();
+                arrowRight.click();
                 click++;
             }else if (modal.getAttribute('aria-hidden') == 'false' && e.key === 'Escape') {
                 closeLightbox();

@@ -3,6 +3,10 @@ const sortInput2 = document.querySelectorAll(".sort-by_list");
 sortInput.addEventListener("click", openSortBy);
 sortInput2.forEach((btn) => btn.addEventListener("click", sortByButton));
 const list = sortInput2[0].parentElement.parentElement;
+let ariaExp = sortInput.getAttribute("aria-expanded");
+window.addEventListener("click", closeSortBy);
+let sortByOpen = 0;
+
 
 async function sortBy(){
     console.log(sortInput.value);
@@ -34,23 +38,42 @@ async function sortBy(){
     }
 }
 
+async function closeSortBy(e){
+    ariaExp = sortInput.getAttribute("aria-expanded");
+    if((ariaExp == 'true')&&(sortByOpen>0)){   
+        list.style.display = "none";
+        sortInput.setAttribute("aria-expanded", "false");
+        sortByOpen = 0;
+    }
+}
+
 async function openSortBy(e){
-    let ariaExp = sortInput.getAttribute("aria-expanded");
+    e.preventDefault();
+    ariaExp = sortInput.getAttribute("aria-expanded");
     if(ariaExp == 'true'){   
         list.style.display = "none";
         sortInput.setAttribute("aria-expanded", "false");
         console.log(ariaExp);
-      }else{
+    }else{
     list.style.display = "inline-block";
     sortInput.setAttribute("aria-expanded", "true");
+    sortInput2[0].focus();
     console.log(list);
-   }
+    setTimeout(function() { sortByOpen = 1;  }, 100);
+    }
+    window.addEventListener('keyup', e => {
+       if (ariaExp == 'true' && e.key === 'Escape') {
+            closeSortBy();
+        }
+    });
 }
+
+
 
 async function sortByButton(e){
     console.log(e.target.dataset.list);
     sortInput.value = e.target.dataset.list;
-    sortInput.children[0].innerHTML = e.target.innerHTML;
+    sortInput.innerHTML = e.target.innerHTML;
     sortBy();
 }
 
