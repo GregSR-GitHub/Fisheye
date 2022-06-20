@@ -20,20 +20,17 @@
       </div>
       <div class="photo_sort">
         <label for="sort-by">Trier par: </label>
- <!--   <select name="sort-by" class="sort-by" id="sort-by">
-        <option value="popularity">Popularité</option>
-        <option value="date">Date</option>
-        <option value="title">Titre</option>
-    </select> -->
     <div class="sort-section">
       <button name="sort-by" class="sort-by" id="sort-by" value="popularity" role="button" aria-haspopup="listbox" aria-expanded="false">
         <span>Popularité</span>
       </button>
-      <ul role="listbox" aria-activedescendant="" aria-selected="false" aria-labelledby="sort-by">
-        <li><a href="#" data-list="popularity" class="sort-by_list">Popularité</a></li>
-        <li><a href="#" data-list="date"  class="sort-by_list">Date</a></li>
-        <li></li><a href="#" data-list="title" class="sort-by_list">Titre</a></li>
+      <ul role="listbox" aria-activedescendant="sort-by_popularity" aria-selected="false" aria-labelledby="sort-by">
+        <li ><a href="#" id="sort-by_popularity" data-list="popularity" class="sort-by_list" role="option">Popularité</a></li>
+        <li ><a href="#" id="sort-by_date" data-list="date" class="sort-by_list" role="option">Date</a></li>
+        <li ><a href="#" id="sort-by_title" data-list="title" class="sort-by_list" role="option">Titre</a></li>
       </ul>
+       <div  class="sort-by_arrow"><i class="fa-solid fa-angle-down"></i></div>
+      
     </div>
       </div>
       <div class="photos_section">
@@ -44,7 +41,7 @@
     </main>
     <!-- Form Modal -->
     <div id="contact_modal" aria-hidden="true" role="dialog"  aria-labelledby="modal_title">
-      <div class="modal_bground"></div>
+      <div class="bground"></div>
 			<div class="modal">
 				<header>
           <h2 id="modal_title">Contactez-moi <br><span class="contact_name"></span></h2>
@@ -74,7 +71,7 @@
     <!-- End Form Modal -->
     <!-- Lightbox Modal -->
     <div id="lightbox"  aria-hidden="true" aria-label="Image closup view">
-      <div class="modal_bground"></div>
+      <div class="bground"></div>
 			<div class="lightbox_section">
         <button class="lightbox_close close" aria-label="Close dialog"></button>
         <a href="#" class="arrow arrow-left"  aria-label="Previous image"></a>

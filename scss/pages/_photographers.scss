@@ -45,3 +45,13 @@ main{
 .price{
     font-weight: bold;
 }
+
+.bground{
+    position: fixed;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--color-white);
+  }

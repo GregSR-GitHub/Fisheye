@@ -10,6 +10,16 @@
     margin: 0 5px;
 }
 
+.sort-by_arrow{
+    position: absolute;
+    color: white;
+    top: 17px;
+    right: 10px;
+    font-size: $font-size-medium;
+    z-index: 4;
+    transition: transform 200ms ease;
+}
+
 .sort-by {
     position: relative;
     background-color: var(--color-primary);
@@ -31,6 +41,7 @@
         left:0;
         border: 0;
         border-radius: 10px;
+        box-shadow: 0 5px 5px 1px rgba(0, 0, 0, 0.5);
 
        & li:nth-child(2){
             border-top: 1px white solid;
@@ -50,3 +61,10 @@
     }
 }
 
+.sort-by[aria-expanded="true"]  + ul {
+    display:block;
+    
+    & + .sort-by_arrow{
+        transform: rotate(180deg);
+    }
+}

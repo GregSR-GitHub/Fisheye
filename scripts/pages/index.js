@@ -1,19 +1,19 @@
-class IndexPage{
-    constructor(){
-    this.urlData = '../data/photographers.json';
-    this.section = document.querySelector(".photographer_section");
-    }
+class IndexPage {
+  constructor () {
+    this.urlData = '../data/photographers.json'
+    this.section = document.querySelector('.photographer_section')
+  }
 
-    async init() {
+  async init () {
     // Récupère les datas des photographes
-    const photographers = await new Data(this.urlData).getPhotographers();
+    const photographers = await new Data(this.urlData).getPhotographers()
     photographers.forEach((photographer) => {
-        const photographerCardDOM = new PhotographerFactory(photographer).getCard();
-        this.section.appendChild(photographerCardDOM);
-    });
-    console.log(photographers);
-    }
+      const photographerCardDOM = new PhotographerFactory(photographer).getCard()
+      this.section.appendChild(photographerCardDOM)
+    })
+    console.log(photographers)
+  }
 }
 
-const page = new IndexPage;
-page.init();
+const page = new IndexPage()
+page.init()
