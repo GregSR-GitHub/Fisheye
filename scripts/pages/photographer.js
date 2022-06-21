@@ -6,7 +6,7 @@ class PhotographersPage {
   constructor () {
     this.params = (new URL(document.location)).searchParams
     this.idPhotographer = this.params.get('id')
-    this.urlData = '../data/photographers.json'
+    this.urlData = 'https://gregsr-github.github.io/Fisheye/data/photographers.json'
     this.photographersSection = document.querySelector('.photographer_header')
     this.photosSection = document.querySelector('.photos_section')
   }
