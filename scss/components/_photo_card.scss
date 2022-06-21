@@ -14,7 +14,7 @@
         @include object-fit(25vw, 10px);
     }
 
-    & p{
+    & figcaption{
         display: flex;
         margin: 5px 0 10px;
         font-size: $font-size-mediumbig;
@@ -32,5 +32,4 @@
         border-radius: 5px;
         padding: 0 3px;
     }
-
 }

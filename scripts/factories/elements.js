@@ -13,6 +13,7 @@ class Image {
     return $img
   }
 }
+
 class Video {
   constructor (src, parent) {
     this.src = src

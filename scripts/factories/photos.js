@@ -7,15 +7,15 @@ class PhotoFactory {
     this.likes = data.likes
     this.type = data.type
     this.url = data.url
-    this.article = document.createElement('article')
-    this.article.className = 'photo_card'
-    this.article.setAttribute('id', 'photo' + this.id)
+    this.figure = document.createElement('figure')
+    this.figure.className = 'photo_card'
+    this.figure.setAttribute('id', 'photo' + this.id)
     this.counter = counter
   }
 
   handleLikes () {
     const that = this
-    this.article.querySelector('.photo_likes').addEventListener('click', function () {
+    this.figure.querySelector('.photo_likes').addEventListener('click', function () {
       event.preventDefault()
       if (this.classList.contains('liked')) {
         this.classList.remove('liked')
@@ -39,7 +39,7 @@ class PhotoFactory {
   }
 
   getCard () {
-    const a = new Link('#', this.article).makeLink()
+    const a = new Link('#', this.figure).makeLink()
     a.setAttribute('aria-label', this.title + ',closeup view')
     // Vérifier si le fichier est une image ou un vidéo.
     if (this.type === 'image') {
@@ -47,14 +47,14 @@ class PhotoFactory {
     } else if (this.type === 'video') {
       new Video(this.url, a).makeVideo()
     }
-    const p = new TextElement('p', '', this.article).makeElement()
-    new TextElement('h2', this.title, p).makeElement()
-    const spanLike = new Link('#', p).makeLink()
+    const figcaption = new TextElement('figcaption', '', this.figure).makeElement()
+    new TextElement('h2', this.title, figcaption).makeElement()
+    const spanLike = new Link('#', figcaption).makeLink()
     spanLike.innerHTML = this.likes + ' <i class="fa-solid fa-heart" aria-label="likes"></i>'
     spanLike.className = 'photo_likes'
     this.handleLikes()
     this.showLightbox(a)
 
-    return this.article
+    return this.figure
   }
 }

@@ -5,7 +5,7 @@ class IndexPage {
   }
 
   async init () {
-    // Récupère les datas des photographes
+    // Récupère les données des photographes
     const photographers = await new Data(this.urlData).getPhotographers()
     photographers.forEach((photographer) => {
       const photographerCardDOM = new PhotographerFactory(photographer).getCard()
