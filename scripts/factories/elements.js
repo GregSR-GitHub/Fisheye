@@ -1,3 +1,19 @@
+class Media {
+  constructor (src, name, parent, type) {
+    this.src = src
+    this.name = name
+    this.parent = parent
+    this.type = type
+  }
+
+  makeMedia () {
+    if (this.type === 'image') {
+      return new Image(this.src, this.name, this.parent).makeImage()
+    } else if (this.type === 'video') {
+      return new Video(this.src, this.name, this.parent).makeVideo()
+    }
+  }
+}
 class Image {
   constructor (src, alt, parent) {
     this.src = src

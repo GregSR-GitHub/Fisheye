@@ -41,16 +41,11 @@ class PhotoFactory {
   getCard () {
     const a = new Link('#', this.figure).makeLink()
     a.setAttribute('aria-label', this.title + ',closeup view')
-    // Vérifier si le fichier est une image ou un vidéo.
-    if (this.type === 'image') {
-      new Image(this.url, this.title, a).makeImage()
-    } else if (this.type === 'video') {
-      new Video(this.url, this.title, a).makeVideo()
-    }
+    new Media(this.url, this.title, a, this.type).makeMedia()
     const figcaption = new TextElement('figcaption', '', this.figure).makeElement()
     new TextElement('h2', this.title, figcaption).makeElement()
     const spanLike = new Link('#', figcaption).makeLink()
-    spanLike.innerHTML = this.likes + ' <i class="fa-solid fa-heart" aria-label="likes"></i>'
+    spanLike.innerHTML = this.likes + ' <span class="fa-solid fa-heart" aria-label="likes"></span>'
     spanLike.className = 'photo_likes'
     this.handleLikes()
     this.showLightbox(a)
