@@ -62,7 +62,7 @@ async function openSortBy (e) {
 }
 
 async function sortByButton (e) {
-  sortInput.value = e.target.dataset.list
+  sortInput.value = e.target.dataset.list // change button's value with custom data of the option list
   sortInput.innerHTML = e.target.innerHTML
   sortInput.setAttribute('aria-activedescendant', 'sort-by_' + e.target.dataset.list)
   sortBy()
