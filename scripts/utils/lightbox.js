@@ -25,7 +25,7 @@ function displayLightbox (idPhoto) {
     const media = new Image(mediaUrl, photoLightboxData.title, lightboxSection).makeImage()
     media.className = 'lightbox_img'
   } else if (photoLightboxData.type === 'video') {
-    const media = new Video(mediaUrl, lightboxSection).makeVideo()
+    const media = new Video(mediaUrl, photoLightboxData.title, lightboxSection).makeVideo()
     media.className = 'lightbox_img'
     media.setAttribute('controls', true)
   }

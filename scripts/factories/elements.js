@@ -15,8 +15,9 @@ class Image {
 }
 
 class Video {
-  constructor (src, parent) {
+  constructor (src, title, parent) {
     this.src = src
+    this.title = title
     this.parent = parent
   }
 
@@ -25,6 +26,7 @@ class Video {
     const $video = document.createElement('video')
     const $source = document.createElement('source')
     $video.appendChild($source)
+    new TextElement('p', this.title, $video).makeElement()
     $source.setAttribute('src', this.src)
     $source.setAttribute('type', 'video/' + $extension)
     this.parent.appendChild($video)

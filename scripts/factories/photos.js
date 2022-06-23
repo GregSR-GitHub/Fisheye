@@ -45,7 +45,7 @@ class PhotoFactory {
     if (this.type === 'image') {
       new Image(this.url, this.title, a).makeImage()
     } else if (this.type === 'video') {
-      new Video(this.url, a).makeVideo()
+      new Video(this.url, this.title, a).makeVideo()
     }
     const figcaption = new TextElement('figcaption', '', this.figure).makeElement()
     new TextElement('h2', this.title, figcaption).makeElement()

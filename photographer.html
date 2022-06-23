@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html  lang="fr">
   <head>
     <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -21,10 +21,10 @@
       <div class="photo_sort">
         <label for="sort-by">Trier par: </label>
         <div class="sort-section">
-          <button name="sort-by" class="sort-by" id="sort-by" value="popularity" role="button" aria-haspopup="listbox" aria-expanded="false">
+          <button name="sort-by" class="sort-by" id="sort-by" value="popularity" role="button" aria-haspopup="listbox" aria-expanded="false" aria-activedescendant="sort-by_popularity" >
             <span>Popularité</span>
           </button>
-          <ul role="listbox" aria-activedescendant="sort-by_popularity" aria-selected="false" aria-labelledby="sort-by">
+          <ul role="listbox"aria-selected="false" aria-labelledby="sort-by">
             <li ><a href="#" id="sort-by_popularity" data-list="popularity" class="sort-by_list" role="option">Popularité</a></li>
             <li ><a href="#" id="sort-by_date" data-list="date" class="sort-by_list" role="option">Date</a></li>
             <li ><a href="#" id="sort-by_title" data-list="title" class="sort-by_list" role="option">Titre</a></li>
@@ -46,7 +46,7 @@
 			<div class="modal">
 				<header>
           <h2 id="modal_title">Contactez-moi <br><span class="contact_name"></span></h2>
-          <button class="close_modal" aria-label="Close contact form"><img src="assets/icons/close.svg" /></button>
+          <button class="close_modal" aria-label="Close contact form"><img src="assets/icons/close.svg" alt="Close dialog" /></button>
         </header>
         
 				<form  class="modal_form">

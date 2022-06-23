@@ -1,6 +1,6 @@
 class IndexPage {
   constructor () {
-    this.urlData = 'https://gregsr-github.github.io/Fisheye/data/photographers.json'
+    this.urlData = '../../data/photographers.json'
     this.section = document.querySelector('.photographer_section')
   }
 

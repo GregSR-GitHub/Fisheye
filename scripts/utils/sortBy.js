@@ -1,11 +1,11 @@
 const sortInput = document.getElementById('sort-by')
-const sortInput2 = document.querySelectorAll('.sort-by_list')
-sortInput.addEventListener('click', openSortBy)
-sortInput2.forEach((btn) => btn.addEventListener('click', sortByButton))
-const list = sortInput2[0].parentElement.parentElement
+const sortInputList = document.querySelectorAll('.sort-by_list')
+const list = sortInputList[0].parentElement.parentElement
 let ariaExp = sortInput.getAttribute('aria-expanded')
-window.addEventListener('click', closeSortBy)
 let sortByOpen = 0
+sortInput.addEventListener('click', openSortBy)
+sortInputList.forEach((btn) => btn.addEventListener('click', sortByButton))
+window.addEventListener('click', closeSortBy)
 
 async function sortBy () {
   console.log(sortInput.value)
@@ -51,8 +51,7 @@ async function openSortBy (e) {
     console.log(ariaExp)
   } else {
     sortInput.setAttribute('aria-expanded', 'true')
-    sortInput2[0].focus()
-    console.log(list)
+    sortInputList[0].focus()
     setTimeout(function () { sortByOpen = 1 }, 100)
   }
   window.addEventListener('keyup', e => {
@@ -63,9 +62,9 @@ async function openSortBy (e) {
 }
 
 async function sortByButton (e) {
-  console.log(e.target.dataset.list)
   sortInput.value = e.target.dataset.list
   sortInput.innerHTML = e.target.innerHTML
+  sortInput.setAttribute('aria-activedescendant', 'sort-by_' + e.target.dataset.list)
   sortBy()
 }
 
