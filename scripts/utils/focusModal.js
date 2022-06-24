@@ -2,6 +2,7 @@ const lightboxFocus = document.getElementById('lightbox')
 const contactFormFocus = document.getElementById('contact_modal')
 const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
 let currentModal = false
+let firstFocusableElement = document.querySelectorAll(focusableElements)[0]
 
 document.addEventListener('keydown', function (e) {
   let isTabPressed = e.key === 'Tab' || e.keyCode === 9
@@ -15,7 +16,7 @@ document.addEventListener('keydown', function (e) {
   }
 
   if (currentModal) {
-    let firstFocusableElement = currentModal.querySelectorAll(focusableElements)[0] // get first element to be focused inside modal
+    firstFocusableElement = currentModal.querySelectorAll(focusableElements)[0] // get first element to be focused inside modal
     let focusableContent = currentModal.querySelectorAll(focusableElements)
     let lastFocusableElement = focusableContent[focusableContent.length - 1] // get last element to be focused inside modal
 
